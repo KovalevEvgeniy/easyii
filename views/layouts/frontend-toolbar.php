@@ -4,8 +4,21 @@ use yii\helpers\Url;
 use yii\easyii\assets\FrontendAsset;
 use yii\easyii\models\Setting;
 
+switch (Setting::get('toolbar_position')) {
+    case 'top':
+        $position = 'top';
+        break;
+
+    case 'bottom':
+        $position = 'bottom';
+        break;
+    
+    default:
+        return false;
+        break;
+}
+
 $asset = FrontendAsset::register($this);
-$position = Setting::get('toolbar_position') === 'bottom' ? 'bottom' : 'top';
 $this->registerCss('body {padding-'.$position.': 50px;}');
 ?>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
